@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = CocoapodRelease::VERSION
   spec.authors       = ["Oliver Letterer"]
   spec.email         = ["oliver.letterer@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{CocoaPods release helper.}
+  spec.description   = %q{Release helper plugin for CocoaPods.}
+  spec.homepage      = "https://github.com/Sparrow-Labs/cocoapods-release"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
