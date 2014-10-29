@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = CocoapodRelease::VERSION
   spec.authors       = ["Oliver Letterer"]
   spec.email         = ["oliver.letterer@gmail.com"]
-  spec.summary       = %q{CocoaPods release helper.}
+  spec.summary       = %q{Tags and releases pods for you.}
   spec.description   = %q{Release helper plugin for CocoaPods.}
   spec.homepage      = "https://github.com/Sparrow-Labs/cocoapods-release"
   spec.license       = "MIT"
