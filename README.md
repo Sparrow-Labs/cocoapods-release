@@ -1,31 +1,25 @@
-# Cocoapods::Release
+# Cocoapods release
 
-TODO: Write a gem description
+CocoaPods release is a little helper that let's you release pods more easily.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'cocoapods-release'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install cocoapods-release
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Change the version in your `podspec` file.
+2. Run `pod release`.
 
-## Contributing
+`pod release`
+* tags and pushes your current branch
+* automatically finds the repository hosting your existing podspec (master or private, doesn't matter) and
+* pushes to podspec for you.
 
-1. Fork it ( https://github.com/[my-github-username]/cocoapods-release/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+## Author
+
+Oliver Letterer
+
+- http://github.com/OliverLetterer
+- http://twitter.com/oletterer
+- oliver.letterer@gmail.com
