@@ -4,7 +4,7 @@ module Pod
       self.summary = 'Release podspecs in current directory'
 
       def execute(command)
-        UI.puts "#{"==>".magenta} #{command}"
+        puts "#{"==>".magenta} #{command}"
         abort unless system(command)
       end
 
@@ -30,6 +30,9 @@ module Pod
       def run
         specs = Dir.entries(".").select { |s| s.end_with? ".podspec" }
         abort "No podspec found" unless specs.count > 0
+
+        puts "#{"==>".magenta} updating repositories"
+        SourcesManager.update
 
         for spec in specs
           name = spec.gsub(".podspec", "")
