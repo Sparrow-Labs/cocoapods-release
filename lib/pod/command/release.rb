@@ -21,8 +21,6 @@ module Pod
       def initialize(argv)
         warnings = argv.flag?('allow-warnings')
         @allow_warnings = warnings ? "--allow-warnings" : ""
-        @only_errors = warnings ? "--only-errors" : ""
-
         @repo = argv.shift_argument unless argv.arguments.empty?
         super
       end
@@ -74,7 +72,7 @@ module Pod
           end
 
           # verify lib
-          execute "pod lib lint #{spec} #{@only_errors}"
+          execute "pod lib lint #{spec} #{@allow_warnings}"
 
           # TODO: create git tag for current version
           unless system("git tag | grep #{version} > /dev/null")
