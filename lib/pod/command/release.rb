@@ -85,7 +85,7 @@ module Pod
             execute "git push && git push --tags"
           end
 
-          repo = (@repo || pushed_sources.first).name
+          repo = @repo || pushed_sources.first.name
           if repo == "master"
             execute "pod trunk push #{spec} #{@allow_warnings}"
           else
