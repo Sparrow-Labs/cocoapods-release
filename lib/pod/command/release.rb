@@ -75,7 +75,7 @@ module Pod
           execute "pod lib lint #{spec} #{@allow_warnings}"
 
           if `pod --version`.to_f >= 0.36
-            execute "pod lib lint #{spec} --use-frameworks #{@allow_warnings}"
+            execute "pod lib lint #{spec} --use-libraries #{@allow_warnings}"
           end
 
           # TODO: create git tag for current version
