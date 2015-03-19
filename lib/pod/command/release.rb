@@ -39,9 +39,11 @@ module Pod
           sources = SourcesManager.all
           sources = sources.select { |s| s.name == @repo } if @repo
           pushed_sources = []
+          available_sources = []
 
           abort "Please run #{"pod install".green} to continue" if sources.count == 0
           for source in sources
+            available_sources.push source.name
             pushed_versions = source.versions(name)
             next unless pushed_versions
 
@@ -72,11 +74,8 @@ module Pod
           end
 
           # verify lib
-          execute "pod lib lint #{spec} #{@allow_warnings}"
-
-          if `pod --version`.to_f >= 0.36
-            execute "pod lib lint #{spec} --use-libraries #{@allow_warnings}"
-          end
+          execute "pod lib lint #{spec} #{@allow_warnings} --sources=#{available_sources.join(',')}"
+          execute "pod lib lint #{spec} --use-libraries #{@allow_warnings} --sources=#{available_sources.join(',')}"
 
           # TODO: create git tag for current version
           unless system("git tag | grep #{version} > /dev/null")
