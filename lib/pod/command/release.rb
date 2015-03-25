@@ -36,14 +36,13 @@ module Pod
           name = spec.gsub(".podspec", "")
           version = Specification.from_file(spec).version
 
-          sources = SourcesManager.all
+          sources = SourcesManager.all.select { |r| r.name == "master" || r.url.start_with?("git") }
           sources = sources.select { |s| s.name == @repo } if @repo
           pushed_sources = []
-          available_sources = []
+          available_sources = SourcesManager.all.map { |r| r.name }
 
           abort "Please run #{"pod install".green} to continue" if sources.count == 0
           for source in sources
-            available_sources.push source.name
             pushed_versions = source.versions(name)
             next unless pushed_versions
 
