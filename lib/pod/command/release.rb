@@ -99,10 +99,10 @@ module Pod
             execute "pod repo push #{repo} #{spec} #{@allow_warnings}"
           end
 
-          if @carthage && `git remote show origin`.include?("git@github.com")
+          if @carthage && `git remote show origin`.include?("github.com")
             execute "carthage archive #{name}"
 
-            user, repo = /git@github.com:(.*)\/(.*).git/.match(`git remote show origin`)[1, 2]
+            user, repo = /(\w*)\/(\w*).git$/.match(`git remote show origin`)[1, 2]
             file = "#{name}.framework.zip"
 
             create_release = %(github-release release --user #{user} --repo #{repo} --tag #{version} --name "Version #{version}" --description "Release of version #{version}")
