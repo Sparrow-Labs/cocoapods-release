@@ -18,6 +18,7 @@ module Pod
         [
           ['--allow-warnings', 'Allows push even if there are lint warnings'],
           ['--carthage', 'Validates project for carthage deployment'],
+          ['--reverse', 'Validates and pushes podspecs in reverse order'],
         ].concat(super.reject { |option, _| option == '--silent' })
       end
 
@@ -26,12 +27,15 @@ module Pod
         @allow_warnings = warnings ? "--allow-warnings" : ""
         @repo = argv.shift_argument unless argv.arguments.empty?
         @carthage = argv.flag?('carthage')
+        @reverse = argv.flag?('reverse')
         super
       end
 
       def run
         specs = Dir.entries(".").select { |s| s.end_with? ".podspec" }
         abort "No podspec found" unless specs.count > 0
+
+        specs = specs.reverse if @reverse
 
         puts "#{"==>".magenta} updating repositories"
         SourcesManager.update
